@@ -1,3 +1,63 @@
+/* =========================================================
+   PROJECT CARD LINKS
+
+   To update a project:
+   1. Replace its url with the project page or repository.
+   2. Set enabled to true or false.
+   3. Use newTab: false for pages on this website.
+   ========================================================= */
+
+const projectLinks = {
+  'digital-logic': {
+    enabled: true,
+    url: 'https://github.com/Jacob-Potts',
+    newTab: true
+  },
+  'computer-organization': {
+    enabled: true,
+    url: 'https://github.com/Jacob-Potts',
+    newTab: true
+  },
+  'cad-design': {
+    enabled: true,
+    url: 'https://github.com/Jacob-Potts',
+    newTab: true
+  }
+};
+
+
+document
+  .querySelectorAll('.project-card[data-project]')
+  .forEach((card) => {
+    const settings = projectLinks[card.dataset.project];
+
+    if (!settings?.enabled || !settings.url) {
+      card.classList.add('project-card-disabled');
+      return;
+    }
+
+    const link = document.createElement('a');
+    link.className = 'project-card-link';
+    link.href = settings.url;
+    link.setAttribute(
+      'aria-label',
+      `View project: ${card.querySelector('h3')?.textContent.trim() || 'project'}`
+    );
+
+    if (settings.newTab) {
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+    }
+
+    while (card.firstChild) {
+      link.appendChild(card.firstChild);
+    }
+
+    card.appendChild(link);
+    card.classList.add('project-card-enabled');
+  });
+
+
 const revealItems = document.querySelectorAll('.reveal');
 
 
