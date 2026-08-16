@@ -1092,6 +1092,29 @@ a {
 }
 
 
+.project-card-link::after {
+    content: "↗";
+
+    position: absolute;
+    top: 22px;
+    right: 24px;
+
+    color: var(--ink);
+
+    font-size: 1.15rem;
+    font-weight: 700;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.project-card-enabled:hover .project-card-link::after,
+.project-card-enabled:focus-within .project-card-link::after {
+    transform: translate(2px, -2px);
+}
+
+
 .project-card-enabled {
     cursor: pointer;
 }
